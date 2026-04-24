@@ -1,0 +1,875 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Monceau Fleurs — Analyse des Avis Clients | Avis Vérifiés</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --blue:#0073FF;
+  --blue-dark:#0058CC;
+  --blue-light:#E8F1FF;
+  --blue-mid:#3391FF;
+  --white:#FFFFFF;
+  --cream:#F8FAFF;
+  --text:#0A0F1E;
+  --text-mid:#3D4459;
+  --text-muted:#6B7394;
+  --border:#D8E3F5;
+  --red:#E63946;
+  --green:#2DB87A;
+  --amber:#F4A100;
+  --card-shadow:0 2px 24px rgba(0,115,255,0.09);
+}
+html{scroll-behavior:smooth}
+body{background:var(--cream);color:var(--text);font-family:'DM Sans',sans-serif;font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+
+/* ── NAV ── */
+.nav{
+  position:sticky;top:0;z-index:100;
+  background:rgba(248,250,255,0.92);
+  backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
+  border-bottom:1px solid var(--border);
+}
+.nav-inner{
+  max-width:1100px;margin:0 auto;padding:0 2rem;
+  display:flex;align-items:center;justify-content:space-between;height:64px;
+}
+.nav-logo{display:flex;align-items:center;gap:14px}
+.nav-brand-logo{height:32px;width:auto}
+.nav-sep{width:1px;height:28px;background:var(--border)}
+.nav-brand-name{font-size:13px;font-weight:600;color:var(--text);letter-spacing:0.01em}
+.nav-links{display:flex;align-items:center;gap:28px}
+.nav-links a{font-size:13px;font-weight:500;color:var(--text-mid);transition:color 0.2s}
+.nav-links a:hover{color:var(--blue)}
+.nav-cta{
+  background:var(--blue);color:#fff;
+  padding:9px 20px;border-radius:8px;
+  font-size:13px;font-weight:600;
+  transition:background 0.2s;white-space:nowrap;
+}
+.nav-cta:hover{background:var(--blue-dark);color:#fff}
+
+/* ── LAYOUT ── */
+.container{max-width:1100px;margin:0 auto;padding:0 2rem}
+.section{padding:80px 0}
+
+/* ── HERO ── */
+.hero{
+  background:var(--blue);
+  padding:88px 0 96px;
+  position:relative;overflow:hidden;
+}
+.hero::before{
+  content:'';position:absolute;top:-150px;left:50%;transform:translateX(-50%);
+  width:800px;height:800px;border-radius:50%;
+  background:rgba(255,255,255,0.06);pointer-events:none;
+}
+.hero::after{
+  content:'';position:absolute;bottom:-200px;right:-100px;
+  width:600px;height:600px;border-radius:50%;
+  background:rgba(255,255,255,0.04);pointer-events:none;
+}
+.hero-inner{position:relative;z-index:1;text-align:center}
+.hero-logos{
+  display:flex;align-items:center;justify-content:center;gap:20px;margin-bottom:36px;
+}
+.hero-logo{
+  height:44px;width:auto;
+  background:rgba(255,255,255,0.12);
+  border:1px solid rgba(255,255,255,0.2);
+  border-radius:12px;padding:8px 16px;
+  display:flex;align-items:center;justify-content:center;
+}
+.hero-logo img{height:28px;width:auto;filter:brightness(0) invert(1)}
+.hero-logo-sep{
+  width:1px;height:36px;background:rgba(255,255,255,0.25);
+}
+.hero-label{
+  display:inline-flex;align-items:center;gap:8px;
+  background:rgba(255,255,255,0.15);border:1px solid rgba(255,255,255,0.25);
+  border-radius:100px;padding:6px 18px;
+  font-size:11.5px;font-weight:500;letter-spacing:0.09em;text-transform:uppercase;
+  color:rgba(255,255,255,0.9);margin-bottom:28px;
+}
+.hero-label-dot{width:6px;height:6px;border-radius:50%;background:#fff;animation:pulse 2s ease-in-out infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.3}}
+.hero h1{
+  font-family:'DM Serif Display',Georgia,serif;
+  font-size:clamp(2.6rem,5.5vw,4.4rem);
+  line-height:1.08;color:var(--white);font-weight:400;margin-bottom:18px;
+}
+.hero h1 em{font-style:italic;opacity:0.82}
+.hero-sub{font-size:17px;color:rgba(255,255,255,0.72);max-width:540px;margin:0 auto 52px;line-height:1.65}
+.hero-stats{
+  display:flex;justify-content:center;flex-wrap:wrap;gap:0;
+  border-top:1px solid rgba(255,255,255,0.15);padding-top:40px;margin-top:40px;
+}
+.hero-stat{flex:1;min-width:155px;padding:0 22px;border-right:1px solid rgba(255,255,255,0.15);text-align:center}
+.hero-stat:last-child{border-right:none}
+.hero-stat-n{
+  font-family:'IBM Plex Mono',monospace;
+  font-size:2.2rem;font-weight:500;color:#fff;line-height:1;letter-spacing:-0.03em;
+}
+.hero-stat-n .suffix{font-size:1.4rem}
+.hero-stat-label{font-size:12px;color:rgba(255,255,255,0.6);margin-top:6px;font-weight:400;letter-spacing:0.01em}
+
+/* ── RATINGS ── */
+.ratings-section{background:var(--white);border-bottom:1px solid var(--border)}
+.ratings-section .section-label{
+  font-size:11.5px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;
+  color:var(--blue);margin-bottom:10px;
+}
+.ratings-section h2{
+  font-family:'DM Serif Display',Georgia,serif;
+  font-size:clamp(1.9rem,3.5vw,2.8rem);font-weight:400;margin-bottom:6px;
+}
+.ratings-section .sub{font-size:16px;color:var(--text-mid);margin-bottom:48px}
+
+.rating-overview{
+  display:grid;grid-template-columns:1fr 2fr;gap:48px;align-items:start;
+  margin-bottom:48px;
+}
+@media(max-width:700px){.rating-overview{grid-template-columns:1fr}}
+.rating-score-block{text-align:center}
+.big-score{
+  font-family:'IBM Plex Mono',monospace;
+  font-size:5.5rem;font-weight:500;line-height:1;
+  color:var(--blue);letter-spacing:-0.04em;
+}
+.big-score span{font-size:2rem;color:var(--text-muted)}
+.score-stars{font-size:26px;margin:8px 0}
+.score-label{font-size:13px;color:var(--text-muted)}
+
+.distrib-bars{display:flex;flex-direction:column;gap:10px;width:100%}
+.distrib-row{display:flex;align-items:center;gap:12px}
+.distrib-star{font-size:13px;font-weight:600;color:var(--text-mid);min-width:22px;text-align:right}
+.distrib-bar-wrap{flex:1;background:var(--cream);border-radius:999px;height:10px;overflow:hidden}
+.distrib-bar{height:100%;border-radius:999px;background:var(--blue);transition:width 1.2s cubic-bezier(0.16,1,0.3,1)}
+.distrib-bar.star1{background:#E63946}
+.distrib-bar.star2{background:#F4A100}
+.distrib-bar.star3{background:#F4C100}
+.distrib-bar.star4{background:#8EC6FF}
+.distrib-bar.star5{background:#0073FF}
+.distrib-count{font-size:12px;color:var(--text-muted);font-family:'IBM Plex Mono',monospace;min-width:30px}
+
+.sentiment-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+@media(max-width:600px){.sentiment-cards{grid-template-columns:1fr}}
+.sentiment-card{
+  border-radius:14px;padding:24px;border:1px solid var(--border);
+  text-align:center;
+}
+.sentiment-card.neg{background:#FEF2F2;border-color:#FBD5D7}
+.sentiment-card.neu{background:#FFFBEA;border-color:#F8E4AA}
+.sentiment-card.pos{background:#ECFDF5;border-color:#A9EDD2}
+.sentiment-n{font-family:'IBM Plex Mono',monospace;font-size:2rem;font-weight:500;line-height:1}
+.sentiment-card.neg .sentiment-n{color:#C81E28}
+.sentiment-card.neu .sentiment-n{color:#B45309}
+.sentiment-card.pos .sentiment-n{color:#0E6E45}
+.sentiment-lbl{font-size:12px;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;margin-top:4px}
+.sentiment-card.neg .sentiment-lbl{color:#C81E28}
+.sentiment-card.neu .sentiment-lbl{color:#B45309}
+.sentiment-card.pos .sentiment-lbl{color:#0E6E45}
+
+/* ── TOPIC #1 ── */
+.topic-section{background:var(--cream)}
+.section-label{font-size:11.5px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--blue);margin-bottom:10px}
+.section-h2{font-family:'DM Serif Display',Georgia,serif;font-size:clamp(1.9rem,3.5vw,2.8rem);font-weight:400;margin-bottom:6px}
+.section-sub{font-size:16px;color:var(--text-mid);margin-bottom:48px}
+
+.topic-hero-card{
+  background:var(--white);border:1px solid var(--border);border-radius:20px;
+  padding:40px;margin-bottom:32px;
+  display:grid;grid-template-columns:1fr auto;gap:32px;align-items:center;
+  box-shadow:var(--card-shadow);
+}
+@media(max-width:640px){.topic-hero-card{grid-template-columns:1fr}}
+.topic-badge{
+  display:inline-flex;align-items:center;gap:6px;
+  background:#FEF2F2;border:1px solid #FBD5D7;
+  border-radius:100px;padding:4px 12px;
+  font-size:11.5px;font-weight:600;color:#C81E28;
+  text-transform:uppercase;letter-spacing:0.06em;
+  margin-bottom:14px;
+}
+.topic-badge::before{content:'⚠';font-size:11px}
+.topic-hero-card h3{
+  font-family:'DM Serif Display',Georgia,serif;
+  font-size:1.9rem;font-weight:400;margin-bottom:12px;
+}
+.topic-hero-card p{font-size:15px;color:var(--text-mid);line-height:1.7}
+.topic-pct{
+  font-family:'IBM Plex Mono',monospace;
+  font-size:4rem;font-weight:500;color:var(--red);
+  line-height:1;text-align:center;white-space:nowrap;
+}
+.topic-pct small{font-size:1.3rem;color:var(--text-muted)}
+
+.subissues{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+@media(max-width:640px){.subissues{grid-template-columns:1fr}}
+.subissue-card{
+  background:var(--white);border:1px solid var(--border);border-radius:14px;
+  padding:22px 24px;display:flex;gap:16px;align-items:flex-start;
+}
+.subissue-pct{
+  font-family:'IBM Plex Mono',monospace;font-size:1.35rem;font-weight:500;
+  color:var(--red);min-width:52px;padding-top:1px;
+}
+.subissue-title{font-size:14px;font-weight:600;margin-bottom:4px;color:var(--text)}
+.subissue-desc{font-size:13px;color:var(--text-muted);line-height:1.5}
+
+/* ── FRUSTRATIONS ── */
+.frustrations-section{background:var(--white);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+.frustrations-list{display:flex;flex-direction:column;gap:24px}
+.frustration-card{
+  border:1px solid var(--border);border-radius:16px;overflow:hidden;
+  display:grid;grid-template-columns:auto 1fr;
+  box-shadow:var(--card-shadow);background:var(--cream);
+}
+.frustration-num{
+  background:var(--blue);color:#fff;
+  padding:28px 22px;font-family:'IBM Plex Mono',monospace;
+  font-size:1.6rem;font-weight:500;display:flex;align-items:center;justify-content:center;
+  min-width:72px;
+}
+.frustration-body{padding:24px 28px}
+.frustration-title{font-size:15.5px;font-weight:700;margin-bottom:6px;color:var(--text)}
+.frustration-meta{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:10px}
+.frust-tag{
+  font-size:11px;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;
+  padding:3px 10px;border-radius:6px;
+}
+.frust-tag.cause{background:#E8F1FF;color:var(--blue)}
+.frust-tag.source{background:#F0FDF4;color:#0E6E45}
+.frustration-desc{font-size:14px;color:var(--text-mid);line-height:1.65}
+
+/* ── VERBATIMS ── */
+.verbatims-section{background:var(--cream);border-bottom:1px solid var(--border)}
+.verbatims-list{display:flex;flex-direction:column;gap:20px}
+.verbatim-card{
+  background:var(--white);border:1px solid var(--border);border-radius:16px;
+  padding:28px 32px;position:relative;
+  box-shadow:var(--card-shadow);
+}
+.verbatim-card::before{
+  content:'"';position:absolute;top:16px;left:24px;
+  font-family:'DM Serif Display',Georgia,serif;font-size:3rem;
+  color:var(--blue);opacity:0.18;line-height:1;
+}
+.verbatim-tag{
+  display:inline-flex;align-items:center;gap:6px;
+  background:var(--blue-light);border-radius:8px;
+  padding:4px 11px;font-size:11px;font-weight:600;
+  color:var(--blue);text-transform:uppercase;letter-spacing:0.07em;margin-bottom:14px;
+}
+.verbatim-quote{
+  font-size:15px;color:var(--text);line-height:1.7;
+  font-style:italic;margin-bottom:16px;padding-left:8px;
+}
+.verbatim-footer{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px}
+.verbatim-author{font-size:13px;font-weight:600;color:var(--text)}
+.verbatim-link{
+  display:inline-flex;align-items:center;gap:6px;
+  font-size:12px;font-weight:600;color:var(--blue);
+  background:var(--blue-light);padding:6px 14px;border-radius:8px;
+  transition:background 0.18s;
+}
+.verbatim-link:hover{background:#cfe0ff}
+.verbatim-link svg{width:13px;height:13px}
+
+/* ── SATISFACTION DRIVERS ── */
+.satisfaction-section{background:var(--white);border-bottom:1px solid var(--border)}
+.drivers-grid{display:flex;flex-direction:column;gap:20px}
+.drivers-row{display:grid;gap:20px}
+.drivers-row.row3{grid-template-columns:repeat(3,1fr)}
+.drivers-row.row2{grid-template-columns:repeat(2,1fr);max-width:calc(66.66% + 10px)}
+@media(max-width:900px){.drivers-row.row3{grid-template-columns:repeat(2,1fr)}.drivers-row.row2{grid-template-columns:repeat(2,1fr);max-width:100%}}
+@media(max-width:560px){.drivers-row.row3,.drivers-row.row2{grid-template-columns:1fr;max-width:100%}}
+.driver-card{
+  background:var(--cream);border:1px solid var(--border);border-radius:14px;
+  padding:26px 28px;display:flex;gap:18px;align-items:flex-start;
+}
+.driver-icon{
+  width:44px;height:44px;border-radius:12px;
+  background:var(--blue);display:flex;align-items:center;justify-content:center;
+  font-size:20px;flex-shrink:0;
+}
+.driver-title{font-size:14.5px;font-weight:700;margin-bottom:5px;color:var(--text)}
+.driver-desc{font-size:13px;color:var(--text-mid);line-height:1.55}
+
+/* ── CTA SOLUTION ── */
+.cta-section{
+  background:var(--blue);padding:80px 0;position:relative;overflow:hidden;
+}
+.cta-section::before{
+  content:'';position:absolute;top:-200px;right:-100px;
+  width:600px;height:600px;border-radius:50%;
+  background:rgba(255,255,255,0.05);pointer-events:none;
+}
+.cta-inner{position:relative;z-index:1;max-width:760px;margin:0 auto;text-align:center}
+.cta-eyebrow{
+  font-size:11.5px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;
+  color:rgba(255,255,255,0.7);margin-bottom:16px;
+}
+.cta-title{
+  font-family:'DM Serif Display',Georgia,serif;
+  font-size:clamp(2rem,4vw,3rem);font-weight:400;color:#fff;
+  margin-bottom:20px;line-height:1.15;
+}
+.cta-desc{
+  font-size:16px;color:rgba(255,255,255,0.8);margin-bottom:36px;
+  line-height:1.75;max-width:600px;margin-left:auto;margin-right:auto;
+}
+.cta-points{
+  display:flex;flex-direction:column;gap:12px;align-items:center;margin-bottom:40px;
+}
+.cta-point{
+  display:flex;align-items:center;gap:10px;
+  background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.18);
+  border-radius:10px;padding:12px 20px;font-size:14.5px;color:#fff;
+  max-width:560px;width:100%;text-align:left;
+}
+.cta-point-icon{font-size:18px;flex-shrink:0}
+.cta-btn{
+  display:inline-flex;align-items:center;gap:10px;
+  background:#fff;color:var(--blue);
+  padding:16px 32px;border-radius:12px;
+  font-size:15px;font-weight:700;
+  transition:transform 0.18s,box-shadow 0.18s;
+  box-shadow:0 4px 24px rgba(0,0,0,0.18);
+}
+.cta-btn:hover{transform:translateY(-2px);box-shadow:0 8px 32px rgba(0,0,0,0.22)}
+.cta-btn svg{width:18px;height:18px}
+
+/* ── FOOTER ── */
+.footer{
+  background:var(--text);color:rgba(255,255,255,0.55);
+  padding:36px 0;text-align:center;
+}
+.footer-inner{max-width:1100px;margin:0 auto;padding:0 2rem}
+.footer p{font-size:13px;line-height:1.7}
+.footer strong{color:rgba(255,255,255,0.85)}
+
+/* ── SCROLL ANIMATIONS ── */
+[data-anim]{opacity:0;transform:translateY(24px);transition:opacity 0.65s ease,transform 0.65s ease}
+[data-anim].visible{opacity:1;transform:none}
+.distrib-bar{width:0 !important}
+.distrib-bar.animated{width:var(--w) !important}
+
+@media(max-width:768px){
+  .nav-links{display:none}
+  .hero-logos{flex-wrap:wrap}
+  .topic-hero-card{grid-template-columns:1fr;text-align:center}
+  .topic-pct{font-size:3rem}
+  .frustration-card{grid-template-columns:1fr}
+  .frustration-num{padding:14px;font-size:1.2rem;min-width:auto}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav-inner">
+    <div class="nav-logo">
+      <!-- Avis Vérifiés / Skeepers logo SVG inline -->
+      <svg width="130" height="30" viewBox="0 0 130 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect width="130" height="30" rx="4" fill="#0073FF" opacity="0"/>
+        <!-- Skeepers wordmark approximation -->
+        <text x="0" y="22" font-family="DM Sans, sans-serif" font-weight="700" font-size="16" fill="#0073FF">Avis Vérifiés</text>
+      </svg>
+      <div class="nav-sep"></div>
+      <span class="nav-brand-name">Rapport d'analyse — Monceau Fleurs</span>
+    </div>
+    <div class="nav-links">
+      <a href="#ratings">Notation</a>
+      <a href="#topic">Sujet N°1</a>
+      <a href="#frustrations">Frustrations</a>
+      <a href="#satisfaction">Satisfaction</a>
+      <a href="#solution" class="nav-cta">Passer à l'action →</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="container">
+    <div class="hero-inner">
+      <!-- Logos -->
+      <div class="hero-logos">
+        <div class="hero-logo">
+          <!-- Monceau Fleurs text logo -->
+          <svg width="140" height="28" viewBox="0 0 140 28" xmlns="http://www.w3.org/2000/svg">
+            <text x="0" y="20" font-family="DM Serif Display, Georgia, serif" font-size="15" fill="white" font-weight="400">Monceau Fleurs</text>
+          </svg>
+        </div>
+        <div class="hero-logo-sep"></div>
+        <div class="hero-logo">
+          <svg width="120" height="28" viewBox="0 0 120 28" xmlns="http://www.w3.org/2000/svg">
+            <text x="0" y="20" font-family="DM Sans, sans-serif" font-size="13" fill="white" font-weight="700">✓ Avis Vérifiés</text>
+          </svg>
+        </div>
+      </div>
+
+      <div class="hero-label">
+        <span class="hero-label-dot"></span>
+        Analyse des avis clients — 4 boutiques parisiennes
+      </div>
+      <h1>Ce que vos clients<br>vous <em>disent vraiment</em></h1>
+      <p class="hero-sub">638 avis Google analysés sur 4 points de vente Monceau Fleurs à Paris. Une photographie sans filtre de l'expérience client.</p>
+
+      <div class="hero-stats">
+        <div class="hero-stat">
+          <div class="hero-stat-n" data-counter="638">0</div>
+          <div class="hero-stat-label">Avis analysés</div>
+        </div>
+        <div class="hero-stat">
+          <div class="hero-stat-n" data-counter="4">0</div>
+          <div class="hero-stat-label">Points de vente</div>
+        </div>
+        <div class="hero-stat">
+          <div class="hero-stat-n" style="color:#FFD580">2.1<span class="suffix">/5</span></div>
+          <div class="hero-stat-label">Note moyenne</div>
+        </div>
+        <div class="hero-stat">
+          <div class="hero-stat-n">62<span class="suffix">%</span></div>
+          <div class="hero-stat-label">Avis négatifs</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- RATINGS -->
+<section class="ratings-section section" id="ratings">
+  <div class="container">
+    <div class="section-label">Métriques de notation</div>
+    <h2 class="section-h2">Distribution des étoiles</h2>
+    <p class="sub">Calculée sur l'ensemble des 638 avis avec étoiles explicites</p>
+
+    <div class="rating-overview" data-anim>
+      <div class="rating-score-block">
+        <div class="big-score">2.1<span>/5</span></div>
+        <div class="score-stars">⭐⭐☆☆☆</div>
+        <div class="score-label">Note moyenne globale</div>
+      </div>
+      <div>
+        <div class="distrib-bars">
+          <div class="distrib-row">
+            <span class="distrib-star">5★</span>
+            <div class="distrib-bar-wrap">
+              <div class="distrib-bar star5" style="--w:20.5%" data-w="20.5"></div>
+            </div>
+            <span class="distrib-count">131</span>
+          </div>
+          <div class="distrib-row">
+            <span class="distrib-star">4★</span>
+            <div class="distrib-bar-wrap">
+              <div class="distrib-bar star4" style="--w:8.6%" data-w="8.6"></div>
+            </div>
+            <span class="distrib-count">55</span>
+          </div>
+          <div class="distrib-row">
+            <span class="distrib-star">3★</span>
+            <div class="distrib-bar-wrap">
+              <div class="distrib-bar star3" style="--w:9.1%" data-w="9.1"></div>
+            </div>
+            <span class="distrib-count">58</span>
+          </div>
+          <div class="distrib-row">
+            <span class="distrib-star">2★</span>
+            <div class="distrib-bar-wrap">
+              <div class="distrib-bar star2" style="--w:5.8%" data-w="5.8"></div>
+            </div>
+            <span class="distrib-count">37</span>
+          </div>
+          <div class="distrib-row">
+            <span class="distrib-star">1★</span>
+            <div class="distrib-bar-wrap">
+              <div class="distrib-bar star1" style="--w:55.9%" data-w="55.9"></div>
+            </div>
+            <span class="distrib-count">357</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="sentiment-cards" data-anim>
+      <div class="sentiment-card neg">
+        <div class="sentiment-n">394</div>
+        <div class="sentiment-lbl">⬇ Négatifs (1-2★)</div>
+      </div>
+      <div class="sentiment-card neu">
+        <div class="sentiment-n">58</div>
+        <div class="sentiment-lbl">◈ Neutres (3★)</div>
+      </div>
+      <div class="sentiment-card pos">
+        <div class="sentiment-n">186</div>
+        <div class="sentiment-lbl">⬆ Positifs (4-5★)</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TOPIC #1 -->
+<section class="topic-section section" id="topic">
+  <div class="container">
+    <div class="section-label">Sujet N°1 critiqué</div>
+    <h2 class="section-h2">La principale source d'insatisfaction</h2>
+    <p class="section-sub">Identifiée dans 68% des avis négatifs rédigés</p>
+
+    <div class="topic-hero-card" data-anim>
+      <div>
+        <div class="topic-badge">Problème majeur identifié</div>
+        <h3>Attitude du personnel & qualité de l'accueil</h3>
+        <p>L'immense majorité des clients mécontents citent en priorité le comportement du personnel : agressivité, mépris, absence de conseil, remarques déplacées. Ce facteur humain éclipse tous les autres points négatifs et génère une spirale de recommandations négatives dans tout Paris.</p>
+      </div>
+      <div>
+        <div class="topic-pct">68<small>%</small></div>
+        <div style="text-align:center;font-size:12px;color:var(--text-muted);margin-top:8px">des avis négatifs</div>
+      </div>
+    </div>
+
+    <div class="subissues" data-anim>
+      <div class="subissue-card">
+        <div class="subissue-pct">38%</div>
+        <div>
+          <div class="subissue-title">Comportement agressif & mépris</div>
+          <div class="subissue-desc">Cris, insultes, tutoiement non sollicité, humiliation publique des clients et des employés.</div>
+        </div>
+      </div>
+      <div class="subissue-card">
+        <div class="subissue-pct">22%</div>
+        <div>
+          <div class="subissue-title">Absence de conseil & accompagnement</div>
+          <div class="subissue-desc">Clients livrés à eux-mêmes pour choisir, aucune aide à la composition, refus de conseiller.</div>
+        </div>
+      </div>
+      <div class="subissue-card">
+        <div class="subissue-pct">20%</div>
+        <div>
+          <div class="subissue-title">Vente forcée & imposition de choix</div>
+          <div class="subissue-desc">Ajout non sollicité de fleurs payantes, pression pour acheter plus, refus de respecter le budget client.</div>
+        </div>
+      </div>
+      <div class="subissue-card">
+        <div class="subissue-pct">12%</div>
+        <div>
+          <div class="subissue-title">Remarques déplacées & drague</div>
+          <div class="subissue-desc">Commentaires personnels inappropriés, comportements d'un employé signalé par plusieurs clientes.</div>
+        </div>
+      </div>
+      <div class="subissue-card" style="grid-column:1/-1">
+        <div class="subissue-pct">8%</div>
+        <div>
+          <div class="subissue-title">Mauvais traitement des employés devant clients</div>
+          <div class="subissue-desc">Responsables criant sur leur équipe en boutique, créant un malaise généralisé chez les clients témoins.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FRUSTRATIONS -->
+<section class="frustrations-section section" id="frustrations">
+  <div class="container">
+    <div class="section-label">Frustrations récurrentes</div>
+    <h2 class="section-h2">Top 5 des irritants clients</h2>
+    <p class="section-sub">Cause racine et source identifiées pour chaque problème</p>
+
+    <div class="frustrations-list">
+
+      <div class="frustration-card" data-anim>
+        <div class="frustration-num">01</div>
+        <div class="frustration-body">
+          <div class="frustration-title">Comportement agressif et méprisant du personnel</div>
+          <div class="frustration-meta">
+            <span class="frust-tag cause">Cause : Management défaillant, profils non adaptés</span>
+            <span class="frust-tag source">Source : Toutes les boutiques</span>
+          </div>
+          <div class="frustration-desc">Un ou deux individus identifiés par boutique (notamment "le chauve à la moustache" au Raspail, "la dame à lunettes" à Gambetta) ruinent l'expérience de masse. Absence totale de formation relation client. Le management tolère ou reproduit lui-même ces comportements, ce qui les normalise auprès de l'équipe.</div>
+        </div>
+      </div>
+
+      <div class="frustration-card" data-anim>
+        <div class="frustration-num">02</div>
+        <div class="frustration-body">
+          <div class="frustration-title">Fleurs qui fanent en 24-48h après l'achat</div>
+          <div class="frustration-meta">
+            <span class="frust-tag cause">Cause : Gestion des stocks et conservation défaillante</span>
+            <span class="frust-tag source">Source : Boutiques Convention et Gambetta principalement</span>
+          </div>
+          <div class="frustration-desc">Fleurs trop anciennes remises en rayon, eau sale dans les bacs, mauvaise gestion des chambres froides, aucun conseil sur l'entretien donné aux clients. Le décalage entre la présentation en boutique et la durée de vie réelle génère un sentiment de tromperie et de gaspillage d'argent.</div>
+        </div>
+      </div>
+
+      <div class="frustration-card" data-anim>
+        <div class="frustration-num">03</div>
+        <div class="frustration-body">
+          <div class="frustration-title">Opacité et manipulation des prix / surfacturation</div>
+          <div class="frustration-meta">
+            <span class="frust-tag cause">Cause : Pratiques commerciales trompeuses non encadrées</span>
+            <span class="frust-tag source">Source : Boutique Gambetta (70+ mentions), Raspail</span>
+          </div>
+          <div class="frustration-desc">Prix non affichés en rayon, rajout non sollicité de feuillages payants (eucalyptus à 7€ non mentionné), prix différents entre l'étiquette et la caisse, arrondis abusifs à l'euro supérieur. Des clients rapportent avoir été facturés deux fois, ou avoir vu le montant modifié à la hausse au terminal.</div>
+        </div>
+      </div>
+
+      <div class="frustration-card" data-anim>
+        <div class="frustration-num">04</div>
+        <div class="frustration-body">
+          <div class="frustration-title">Échec des livraisons (non-livraison, retard, erreur de commande)</div>
+          <div class="frustration-meta">
+            <span class="frust-tag cause">Cause : Système logistique peu fiable, aucune communication proactive</span>
+            <span class="frust-tag source">Source : Raspail, Convention, Voltaire — via Interflora/Uber</span>
+          </div>
+          <div class="frustration-desc">Bouquets commandés pour la Saint-Valentin ou la fête des mères non livrés ou livrés 2 jours après. Commandes déclarées "livrées" sans l'être (mensonge sur Interflora). Aucun remboursement proposé spontanément. Le service téléphonique est désagréable quand les clients rappellent pour se plaindre.</div>
+        </div>
+      </div>
+
+      <div class="frustration-card" data-anim>
+        <div class="frustration-num">05</div>
+        <div class="frustration-body">
+          <div class="frustration-title">Horaires non respectés — boutique fermée avant l'heure</div>
+          <div class="frustration-meta">
+            <span class="frust-tag cause">Cause : Horaires Google non maintenus, personnel qui ferme à sa convenance</span>
+            <span class="frust-tag source">Source : Boutiques Voltaire et Gambetta</span>
+          </div>
+          <div class="frustration-desc">Clients arrivant 15 à 30 minutes avant la fermeture théorique et se faisant refouler sans explication. Horaires Google incorrects non mis à jour (ouvre à 9h au lieu de 8h indiqué, ferme à 19h au lieu de 21h). Des clients font un déplacement inutile et expriment leur frustration publiquement.</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- VERBATIMS -->
+<section class="verbatims-section section" id="verbatims">
+  <div class="container">
+    <div class="section-label">Voix des clients</div>
+    <h2 class="section-h2">Un exemple par frustration</h2>
+    <p class="section-sub">Verbatims authentiques, vérifiés et sourcés</p>
+
+    <div class="verbatims-list">
+
+      <div class="verbatim-card" data-anim>
+        <div class="verbatim-tag">Comportement du personnel</div>
+        <div class="verbatim-quote">"Il m'a littéralement engueulée pour avoir regardé des fleurs d'à côté sans me rendre compte qu'il y avait deux boutiques. La façon dont il s'adresse aux clients est inadmissible. Je ne reviendrai pas et je ne recommande absolument pas cette boutique."</div>
+        <div class="verbatim-footer">
+          <span class="verbatim-author">— alessia murgu</span>
+          <a class="verbatim-link" href="https://www.google.com/maps/reviews/data=!4m8!14m7!1m6!2m5!1sCi9DQUlRQUNvZENodHljRjlvT2xOWGFERlZSRXBHVVRsV1JqRnlia0ZrVUhoMmNFRRAB!2m1!1s0x0:0x3bd84d55925440b2!3m1!1s2@1:CAIQACodChtycF9oOlNXaDFVREpGUTlWRjFybkFkUHh2cEE%7C%7C?hl=en" target="_blank">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            Voir sur Google
+          </a>
+        </div>
+      </div>
+
+      <div class="verbatim-card" data-anim>
+        <div class="verbatim-tag">Fleurs qui fanent</div>
+        <div class="verbatim-quote">"Un bouquet à 30€ qui ne durera pas plus de 24h... j'ai eu comme retour à ce cadeau : merci mais la prochaine fois prend tes fleurs ailleurs que chez Lidl. Lorsque je passe en magasin pour avoir une explication, on me dit qu'ils ne peuvent rien faire car la responsable n'est pas là."</div>
+        <div class="verbatim-footer">
+          <span class="verbatim-author">— Guillaume EVRARD</span>
+          <a class="verbatim-link" href="https://www.google.com/maps/reviews/data=!4m8!14m7!1m6!2m5!1sChdDSUhNMG9nS0VJQ0FnSURCOWJ6ZF93RRAB!2m1!1s0x0:0xaa8aa32cf0d297e8!3m1!1s2@1:CIHM0ogKEICAgIDB9bzd_wE%7C%7C?hl=en" target="_blank">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            Voir sur Google
+          </a>
+        </div>
+      </div>
+
+      <div class="verbatim-card" data-anim>
+        <div class="verbatim-tag">Manipulation des prix</div>
+        <div class="verbatim-quote">"Elle m'annonce la somme de 92,90€ ! Je lui demande de vérifier. Elle recompte et me dit 84€. Pour un lys, 2 amarelys, 2 branches d'eucalyptus et une fleur de noël ! Du jamais vu. Plus jamais."</div>
+        <div class="verbatim-footer">
+          <span class="verbatim-author">— Mina Benyoub</span>
+          <a class="verbatim-link" href="https://www.google.com/maps/reviews/data=!4m8!14m7!1m6!2m5!1sChdDSUhNMG9nS0VJQ0FnSUMxc3FDaHJnRRAB!2m1!1s0x0:0x526814dc8a4a94d4!3m1!1s2@1:CIHM0ogKEICAgIC1sqChrgE%7C%7C?hl=en" target="_blank">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            Voir sur Google
+          </a>
+        </div>
+      </div>
+
+      <div class="verbatim-card" data-anim>
+        <div class="verbatim-tag">Échec des livraisons</div>
+        <div class="verbatim-quote">"Le bouquet a été déclaré comme 'livré' auprès d'Interflora, ce qui est tout simplement un mensonge. ❌ Communication inexistante ❌ Engagements non tenus ❌ Attitude désinvolte face au client ❌ Mensonge sur la livraison. Une honte."</div>
+        <div class="verbatim-footer">
+          <span class="verbatim-author">— Lili</span>
+          <a class="verbatim-link" href="https://www.google.com/maps/reviews/data=!4m8!14m7!1m6!2m5!1sCi9DQUlRQUNvZENodHljRjlvT25GT2VUWmFaWFY1VFc1c1QzWkxZbUpvT1daeFdYYxAB!2m1!1s0x0:0x3bd84d55925440b2!3m1!1s2@1:CAIQACodChtycF9oOnFOeTZaZXV5TW5sT3ZLYmJoOWZxWXc%7C%7C?hl=en" target="_blank">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            Voir sur Google
+          </a>
+        </div>
+      </div>
+
+      <div class="verbatim-card" data-anim>
+        <div class="verbatim-tag">Horaires non respectés</div>
+        <div class="verbatim-quote">"Arrivé à 19h45 un dimanche soir. Indiquée 20h fermeture. Toute lumière allumée. Une fille brune d'environ 30 ans me voit mais me fait signe de partir. Alors qu'il reste encore 15 minutes d'ouverture ! Étant commerçant aussi, je trouve ce genre de comportement inacceptable."</div>
+        <div class="verbatim-footer">
+          <span class="verbatim-author">— Vince Delage</span>
+          <a class="verbatim-link" href="https://www.google.com/maps/reviews/data=!4m8!14m7!1m6!2m5!1sChdDSUhNMG9nS0VJQ0FnSURlbDUyeTR3RRAB!2m1!1s0x0:0x344dbd3ecd977e1a!3m1!1s2@1:CIHM0ogKEICAgIDel52y4wE%7C%7C?hl=en" target="_blank">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            Voir sur Google
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- SATISFACTION DRIVERS -->
+<section class="satisfaction-section section" id="satisfaction">
+  <div class="container">
+    <div class="section-label">Ce qui fonctionne</div>
+    <h2 class="section-h2">Top 5 drivers de satisfaction</h2>
+    <p class="section-sub">Les points forts à capitaliser et amplifier</p>
+
+    <div class="drivers-grid">
+      <div class="drivers-row row3">
+        <div class="driver-card" data-anim>
+          <div class="driver-icon">🌸</div>
+          <div>
+            <div class="driver-title">Variété & abondance de fleurs</div>
+            <div class="driver-desc">Grand choix de fleurs coupées, plantes et compositions. Clients apprécient pouvoir composer eux-mêmes leur bouquet à partir d'une sélection diverse.</div>
+          </div>
+        </div>
+        <div class="driver-card" data-anim>
+          <div class="driver-icon">⭐</div>
+          <div>
+            <div class="driver-title">Excellence de certains vendeurs</div>
+            <div class="driver-desc">Bryan, Lauren, Kako, Sam — des profils chaleureux et compétents qui génèrent des avis 5★ enthousiastes et fidélisent leur clientèle personnelle.</div>
+          </div>
+        </div>
+        <div class="driver-card" data-anim>
+          <div class="driver-icon">💶</div>
+          <div>
+            <div class="driver-title">Prix accessibles hors période de fêtes</div>
+            <div class="driver-desc">Bouquets à partir de 14€, fleurs à l'unité à 3€. Le rapport qualité-prix est apprécié quand les prix sont transparents et cohérents.</div>
+          </div>
+        </div>
+      </div>
+      <div class="drivers-row row2">
+        <div class="driver-card" data-anim>
+          <div class="driver-icon">💍</div>
+          <div>
+            <div class="driver-title">Compositions florales pour occasions spéciales</div>
+            <div class="driver-desc">Bouquets de mariage, obsèques, bouquets de mariée à la dernière minute — quand le bon professionnel s'en charge, le résultat est magnifique et mémorable.</div>
+          </div>
+        </div>
+        <div class="driver-card" data-anim>
+          <div class="driver-icon">⚡</div>
+          <div>
+            <div class="driver-title">Disponibilité et réactivité</div>
+            <div class="driver-desc">Ouvert tôt et tard, capacité à servir des clients pressés, service sur mesure apprécié quand l'équipe est motivée.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA SOLUTION -->
+<section class="cta-section" id="solution">
+  <div class="container">
+    <div class="cta-inner">
+      <div class="cta-eyebrow">Comment passer à l'action ?</div>
+      <div class="cta-title">🧐 Centralisez, modérez et répondez<br>à tous vos avis clients</div>
+      <div class="cta-desc">
+        Vos avis de marque, avis produits et avis points de vente — gérés depuis une seule plateforme d'avis clients certifiée AFNOR. Transformez chaque avis négatif en opportunité d'amélioration.
+      </div>
+
+      <div class="cta-points">
+        <div class="cta-point">
+          <span class="cta-point-icon">✅</span>
+          <span>Collectez des avis certifiés sur tous vos points de vente parisiens</span>
+        </div>
+        <div class="cta-point">
+          <span class="cta-point-icon">📊</span>
+          <span>Analysez les tendances en temps réel par boutique, par sujet, par période</span>
+        </div>
+        <div class="cta-point">
+          <span class="cta-point-icon">💬</span>
+          <span>Répondez à chaque avis depuis une interface unifiée et améliorez votre e-réputation</span>
+        </div>
+        <div class="cta-point">
+          <span class="cta-point-icon">🔒</span>
+          <span>Plateforme certifiée AFNOR — vos avis sont authentiques et vérifiés</span>
+        </div>
+      </div>
+
+      <a href="https://skeepers.io/fr/avis-verifies/" target="_blank" class="cta-btn">
+        Découvrir Avis Vérifiés
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-inner">
+    <p>Analyse réalisée par <strong>Avis Vérifiés by Skeepers</strong> · Données issues de <strong>638 avis Google</strong> sur 4 boutiques Monceau Fleurs à Paris · 2025</p>
+    <p style="margin-top:8px;font-size:12px">Boutiques analysées : Raspail · Convention · Voltaire · Gambetta</p>
+  </div>
+</footer>
+
+<script>
+// Counter animation
+function animateCounter(el) {
+  const target = parseInt(el.dataset.counter);
+  const duration = 1400;
+  const start = performance.now();
+  function update(now) {
+    const t = Math.min((now - start) / duration, 1);
+    const ease = 1 - Math.pow(1 - t, 3);
+    el.textContent = Math.round(ease * target);
+    if (t < 1) requestAnimationFrame(update);
+  }
+  requestAnimationFrame(update);
+}
+
+// Scroll animations
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+      // Animate counters in hero
+      entry.target.querySelectorAll && entry.target.querySelectorAll('[data-counter]').forEach(animateCounter);
+      // Animate distribution bars
+      entry.target.querySelectorAll && entry.target.querySelectorAll('.distrib-bar').forEach(bar => {
+        setTimeout(() => {
+          bar.style.width = bar.style.getPropertyValue('--w');
+          bar.classList.add('animated');
+        }, 200);
+      });
+      observer.unobserve(entry.target);
+    }
+  });
+}, {threshold: 0.12});
+
+document.querySelectorAll('[data-anim]').forEach(el => observer.observe(el));
+
+// Hero counters on load
+document.querySelectorAll('.hero [data-counter]').forEach(animateCounter);
+
+// Hero distrib bars on load (with delay for scroll down)
+setTimeout(() => {
+  const heroVisible = document.querySelector('.ratings-section');
+  const barObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.querySelectorAll('.distrib-bar').forEach(bar => {
+          setTimeout(() => bar.classList.add('animated'), 300);
+        });
+        barObserver.unobserve(entry.target);
+      }
+    });
+  }, {threshold: 0.2});
+  if (heroVisible) barObserver.observe(heroVisible);
+}, 100);
+</script>
+</body>
+</html>
